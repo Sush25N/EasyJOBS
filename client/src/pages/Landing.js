@@ -1,7 +1,8 @@
 import React from 'react'
-import logo from '../assets/images/logo.svg'
 import main from '../assets/images/main.svg'
 import Wrapper from '../assets/wrappers/LandingPage'
+import Logo from '../components/Logo'
+import { Link } from 'react-router-dom'
 // import Wrapper from '../assets/wrappers/Testing'
 
 
@@ -9,13 +10,13 @@ const Landing = () => {
   return (
     <Wrapper>
         <nav>
-            <img src={logo} alt="EasyJOBS" className='logo' />
+            <Logo />
         </nav>
         <div className="container page">
             <div className="info">
                 <h1>job <span>tracking</span> app</h1>
                 <p>A Lorem ipsum, as you probably already know, is a text commonly used in design and layout, which allows you to check that the spaces are well distributed and the fonts work correctly. It is a Latin passage extracted from a text by Cicero, De finibus bonorum et malorum.</p>
-                <button className='btn btn-hero'>Login/Register</button>
+                <Link to='/register' className='btn btn-hero'>Login/Register</Link>
             </div>
             <img src={main} alt="job hunt" className='img main-img'/>
         </div>
