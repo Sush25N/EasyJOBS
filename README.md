@@ -298,3 +298,93 @@ function Register() {
   );
 }
 ```
+
+#### FormRow Component
+
+- create FormRow.js in <b>components</b>
+- setup import/export
+- setup one for email and password
+- hint "type,name,value"
+
+```js
+const FormRow = ({ type, name, value, handleChange, labelText }) => {
+  return (
+    <div className='form-row'>
+      <label htmlFor={name} className='form-label'>
+        {labelText || name}
+      </label>
+
+      <input
+        type={type}
+        value={value}
+        name={name}
+        onChange={handleChange}
+        className='form-input'
+      />
+    </div>
+  );
+};
+
+export default FormRow;
+```
+
+#### Alert Component
+
+- right away setup as component
+- create Alert.js in <b>components</b>
+
+```js
+const Alert = () => {
+  return <div className='alert alert-danger'>alert goes here</div>;
+};
+
+export default Alert;
+```
+
+- setup import/export
+- alert-danger or alert-success
+- eventually setup in global context
+- showAlert in initialState (true || false)
+- right after h3 login
+
+```js
+values.showAlert && <Alert />;
+```
+
+#### Toggle Member
+
+```js
+const toggleMember = () => {
+  setValues({ ...values, isMember: !values.isMember });
+};
+
+return (
+  <Wrapper>
+    {/* control h3 */}
+
+    <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+
+    {/* toggle name */}
+
+    {!values.isMember && (
+      <FormRow
+        type='text'
+        name='name'
+        value={values.name}
+        handleChange={handleChange}
+      />
+    )}
+
+    {/* right after submit btn */}
+    {/* toggle button */}
+
+    <p>
+      {values.isMember ? 'Not a member yet?' : 'Already a member?'}
+
+      <button type='button' onClick={toggleMember} className='member-btn'>
+        {values.isMember ? 'Register' : 'Login'}
+      </button>
+    </p>
+  </Wrapper>
+);
+```
