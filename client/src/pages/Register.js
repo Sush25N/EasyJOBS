@@ -1,86 +1,86 @@
-// import React from 'react'
-// import { useState, useEffect } from 'react'
-// import { Logo, FormRow, Alert } from '../components'
-// import Wrapper from '../assets/wrappers/RegisterPage'
-// import { Form } from 'react-router-dom'
-// import { useAppContext } from '../context/appContext'
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { Logo, FormRow, Alert } from '../components'
+import Wrapper from '../assets/wrappers/RegisterPage'
+import { Form } from 'react-router-dom'
+import { useAppContext } from '../context/appContext'
 
-// const initialState = {
-//   name:'',
-//   email:'',
-//   password:'',
-//   isMember: true,
-// }
+const initialState = {
+  name:'',
+  email:'',
+  password:'',
+  isMember: true,
+}
 
 
-// const Register = () => { 
-//   const [values, setValues] = useState(initialState)
-//   // global state and useNavigate
-//   const {isLoading, showAlert, displayAlert} = useAppContext();
-//   // console.log(state);
+const Register = () => { 
+  const [values, setValues] = useState(initialState)
+  // global state and useNavigate
+  const {isLoading, showAlert, displayAlert} = useAppContext();
+  // console.log(state);
 
-//   const toggleMember = () => {
-//     setValues({ ...values, isMember: !values.isMember })
-//   }
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember })
+  }
 
-//   const handleChange = (e) => {
-//     setValues({...values, [e.target.name] : e.target.name})
-//   }
+  const handleChange = (e) => {
+    setValues({...values, [e.target.name] : e.target.name})
+  }
 
-//   const onSubmit = (e) => {
-//     e.preventDefault()
-//     const {name, email, password, isMember} = values
-//     if (!email || !password || (!isMember && !name)) {
-//       displayAlert()
-//       return
-//     }
-//     console.log(values);
-//   }
-//   return (
-//     <Wrapper className='full-page'>
-//       <form className='form' onSubmit={onSubmit}>
-//         <Logo />
-//         <h3>{values.isMember ? 'Login' : 'Register'}</h3>
-//         {showAlert && <Alert />}
-//         {/* { name input} */}
-//         {!values.isMember && (
-//           <FormRow 
-//             type='text' 
-//             name='name' 
-//             value={values.name} 
-//             handleChange={handleChange}
-//           />
-//         )}
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const {name, email, password, isMember} = values
+    if (!email || !password || (!isMember && !name)) {
+      displayAlert()
+      return
+    }
+    console.log(values);
+  }
+  return (
+    <Wrapper className='full-page'>
+      <form className='form' onSubmit={onSubmit}>
+        <Logo />
+        <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+        {showAlert && <Alert />}
+        {/* { name input} */}
+        {!values.isMember && (
+          <FormRow 
+            type='text' 
+            name='name' 
+            value={values.name} 
+            handleChange={handleChange}
+          />
+        )}
         
-//         {/* { email input} */}
-//         <FormRow 
-//           type='email' 
-//           name='email' 
-//           value={values.email} 
-//           handleChange={handleChange}
-//         />
-//         {/* { password input} */}
-//         <FormRow 
-//           type='password' 
-//           name='password' 
-//           value={values.password} 
-//           handleChange={handleChange}
-//         />
+        {/* { email input} */}
+        <FormRow 
+          type='email' 
+          name='email' 
+          value={values.email} 
+          handleChange={handleChange}
+        />
+        {/* { password input} */}
+        <FormRow 
+          type='password' 
+          name='password' 
+          value={values.password} 
+          handleChange={handleChange}
+        />
 
-//         <button type='submit' className='btn btn-block'> 
-//           submit
-//         </button>
+        <button type='submit' className='btn btn-block'> 
+          submit
+        </button>
 
-//         <p>
-//           {values.isMember ? 'Not a member yet ?' : 'Already a member ?'}
-//           <button type='button' onClick={toggleMember} className='member-btn'>
-//             {values.isMember ? 'Register' : 'Login'}
-//           </button>
-//         </p>
-//       </form>
-//     </Wrapper>
-//   )
-// }
+        <p>
+          {values.isMember ? 'Not a member yet ?' : 'Already a member ?'}
+          <button type='button' onClick={toggleMember} className='member-btn'>
+            {values.isMember ? 'Register' : 'Login'}
+          </button>
+        </p>
+      </form>
+    </Wrapper>
+  )
+}
 
-// export default Register
+export default Register
  
