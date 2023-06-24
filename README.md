@@ -591,3 +591,159 @@ const clearAlert = () => {
   }, 3000);
 };
 ```
+
+#### Clear Alert
+
+- technically optional
+
+```js
+actions.js;
+
+export const CLEAR_ALERT = 'CLEAR_ALERT';
+```
+
+- setup imports (reducer and appContext)
+
+```js
+reducer.js;
+
+if (action.type === CLEAR_ALERT) {
+  return {
+    ...state,
+    showAlert: false,
+    alertType: '',
+    alertText: '',
+  };
+}
+```
+
+```js
+appContext.js;
+
+const displayAlert = () => {
+  dispatch({
+    type: DISPLAY_ALERT,
+  });
+  clearAlert();
+};
+
+const clearAlert = () => {
+  setTimeout(() => {
+    dispatch({
+      type: CLEAR_ALERT,
+    });
+  }, 3000);
+};
+```
+
+#### Setup Server
+
+- stop the dev server in client
+- cd ..
+- start setting up our server
+- setup package.json
+
+```sh
+npm init -y
+```
+
+- create server.js
+- console.log('server running...')
+
+```sh
+node server
+```
+
+#### ES6 vs CommonJS
+
+```js
+CommonJS;
+
+const express = require('express');
+const app = express();
+```
+
+```js
+ES6;
+
+import express from 'express';
+const app = express();
+```
+
+- file extension .mjs
+
+```js
+package.json
+
+"type":"module"
+```
+
+#### Nodemon and Basic Express Server
+
+```sh
+npm install nodemon --save-dev
+```
+
+```js
+package.json
+
+"start":"nodemon server"
+
+```
+
+```sh
+npm install express
+```
+
+```js
+import express from 'express';
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Welcome!');
+});
+
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server is listening on port ${port}...`));
+```
+
+#### Not Found Middleware
+
+- in the root create <b>middleware</b> folder
+- not-found.js
+- setup function
+- return 404 with message 'Route does not exist'
+- import in server.js
+- make sure to use .js extension
+- place after home route
+
+#### Error Middleware
+
+- in the middleware create error-handler.js
+- setup function
+- accept 4 parameters, first one error
+- log error
+- return 500
+- json({msg:'there was an error'})
+- import in the server.js
+- make sure to use .js extension
+- place it last
+- eventually handle Mongoose Errors, just like in the node-express
+- showcase with async errors
+
+#### ENV Variables
+
+```sh
+npm install dotenv
+```
+
+- import dotenv from 'dotenv'
+- dotenv.config()
+
+- create .env
+- PORT=4000
+- .gitignore
+- /node_modules
+- .env
+
