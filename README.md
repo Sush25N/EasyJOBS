@@ -747,3 +747,51 @@ npm install dotenv
 - /node_modules
 - .env
 
+#### Connect to MongoDB
+
+- switched back to PORT=5000
+- remove Error from '/'
+
+- existing MongoDB Atlas Account
+
+```sh
+npm install mongoose
+```
+
+- create <b>db</b> folder
+- create connect.js
+- setup connectDB(url)
+- in server.js create start() function
+- get connection string
+- setup as MONGO_URL in .env
+- provide credentials and DB Name
+
+#### Auth Controller and Route Structure
+
+- create <b>controllers</b>
+- authController.js
+- create async functions
+
+```js
+export { register, login, updateUser };
+```
+
+- return res.send('function name')
+- create <b>routes</b> folder
+- authRoutes.js
+- setup express router
+- import functions from authController.js
+
+```js
+router.route('/register').post(register);
+router.route('/login').post(login);
+router.route('/updateUser').patch(updateUser);
+
+export default router;
+```
+
+- import authRouter in server.js
+
+```js
+app.use('/api/v1/auth', authRouter);
+```
