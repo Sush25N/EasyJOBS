@@ -795,3 +795,75 @@ export default router;
 ```js
 app.use('/api/v1/auth', authRouter);
 ```
+
+#### Jobs Controller and Route Structure
+
+- jobsController.js
+- create async functions
+
+```js
+export { createJob, deleteJob, getAllJobs, updateJob, showStats };
+```
+
+- return res.send('function name')
+
+- jobsRoutes.js
+- setup express router
+- import functions from jobsController.js
+
+```js
+router.route('/').post(createJob).get(getAllJobs);
+// place before :id
+router.route('/stats').get(showStats);
+router.route('/:id').delete(deleteJob).patch(updateJob);
+
+export default router;
+```
+
+- in server.js jobsRouter
+
+```js
+app.use('/api/v1/jobs', jobsRouter);
+```
+
+#### Postman
+
+- URL global var
+- JOBIFY Collection
+- auth and jobs folders
+- setup routes
+
+#### User Model
+
+- <b>models</b> folder
+- User.js
+- setup schema
+- name, email, password, lastName, location
+- all {type:String}
+
+#### Validate Email
+
+```js
+validate:{
+  validator:(field)=> {return 2 > 1},
+  message:'Please provide valid email'
+  }
+```
+
+- [Validator Package](https://www.npmjs.com/package/validator)
+
+```sh
+npm install validator
+```
+
+- import in User.js
+- validator.isEmail
+
+#### Register User - Initial Setup
+
+- authController
+- import User model
+- setup temporary try/catch
+- await User.create(req.body)
+- if success 201 with json({user}) (temp)
+- if error 500 with json({msg:'there was an error'})
